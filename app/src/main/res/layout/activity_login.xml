@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="40sp"
+        android:layout_marginTop="100dp"
+        android:text="NMTracker"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/email_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="#DAD8D8"
+        android:hint="Email"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        />
+
+    <EditText
+        android:id="@+id/password_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="#DAD8D8"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="Login"
+        android:textSize="20sp"
+        app:cornerRadius="10dp" />
+
+    <TextView
+        android:id="@+id/login_to_register_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Register here"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#3A5FCD"
+        />
+
+    <TextView
+        android:id="@+id/login_to_forgetPassword_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Forget password? Click here"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#3A5FCD"
+        />
+
+
+
+
+
+
+
+
+
+</LinearLayout>
