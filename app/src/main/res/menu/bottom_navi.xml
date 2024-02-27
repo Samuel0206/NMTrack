@@ -9,6 +9,10 @@
         android:title="List"
         android:icon="@drawable/list"/>
     <item
+        android:id="@+id/action_stat_page"
+        android:title="stat"
+        android:icon="@drawable/stat"/>
+    <item
         android:id="@+id/action_user_page"
         android:title="User"
         android:icon="@drawable/user"/>
