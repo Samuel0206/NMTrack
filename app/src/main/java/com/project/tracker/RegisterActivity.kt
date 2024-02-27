@@ -70,7 +70,8 @@ class RegisterActivity : AppCompatActivity() {
                                 "username" to username,
                                 "email" to email,
                                 "phone" to phone,
-                                "password" to password
+                                "password" to password,
+                                "avatarurl" to ""
                             )
                             userRef.setValue(userData)
                             Toast.makeText(this, "Register success! ", Toast.LENGTH_SHORT).show()
