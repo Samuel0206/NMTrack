@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.project.tracker.ActivityFeedback
+import com.project.tracker.ActivitySetting
 import com.project.tracker.EditProfileActivity
 import com.project.tracker.R
 
@@ -24,6 +26,8 @@ class UserPageFragment : Fragment() {
     private lateinit var imgAvatar: ImageView
     private lateinit var tvUsername: TextView
     private lateinit var btnEditProfile: Button
+    private lateinit var btnFeedback: Button
+    private lateinit var btnProfileSetting: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,8 @@ class UserPageFragment : Fragment() {
         imgAvatar = view.findViewById(R.id.imgAvatar)
         tvUsername = view.findViewById(R.id.tvUsername)
         btnEditProfile = view.findViewById(R.id.btnEditProfile)
+        btnFeedback = view.findViewById(R.id.btnFeedBack)
+        btnProfileSetting = view.findViewById(R.id.btnProfileSetting)
 
         return view
     }
@@ -62,6 +68,16 @@ class UserPageFragment : Fragment() {
 
             startActivity(intent)
         }
+
+        btnFeedback.setOnClickListener {
+            startActivity(Intent(requireContext(), ActivityFeedback::class.java))
+        }
+
+        btnProfileSetting.setOnClickListener {
+            startActivity(Intent(requireContext(), ActivitySetting::class.java))
+        }
+
+
     }
 
     private fun getCurrentUserDisplayNameFromDatabase() {

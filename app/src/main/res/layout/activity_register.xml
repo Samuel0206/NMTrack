@@ -19,7 +19,7 @@
         />
 
     <EditText
-        android:id="@+id/username_register"
+        android:id="@+id/etFeedback"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="50dp"

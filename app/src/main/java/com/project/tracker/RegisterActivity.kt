@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
-        usernameEditText = findViewById(R.id.username_register)
+        usernameEditText = findViewById(R.id.etFeedback)
         emailEditText = findViewById(R.id.email_register)
         phoneEditText = findViewById(R.id.phone_register)
         passwordEditText = findViewById(R.id.password_register)
@@ -71,7 +71,8 @@ class RegisterActivity : AppCompatActivity() {
                                 "email" to email,
                                 "phone" to phone,
                                 "password" to password,
-                                "avatarurl" to ""
+                                "avatarurl" to "",
+                                "goal" to 0
                             )
                             userRef.setValue(userData)
                             Toast.makeText(this, "Register success! ", Toast.LENGTH_SHORT).show()
