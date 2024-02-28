@@ -9,14 +9,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.project.tracker.ActivityFeedback
 import com.project.tracker.ActivitySetting
 import com.project.tracker.EditProfileActivity
+import com.project.tracker.FeedbackActivity
 import com.project.tracker.R
+
 
 class UserPageFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -26,7 +25,7 @@ class UserPageFragment : Fragment() {
     private lateinit var imgAvatar: ImageView
     private lateinit var tvUsername: TextView
     private lateinit var btnEditProfile: Button
-    private lateinit var btnFeedback: Button
+    private lateinit var btnFeedBack: Button
     private lateinit var btnProfileSetting: Button
 
     override fun onCreateView(
@@ -39,21 +38,15 @@ class UserPageFragment : Fragment() {
         imgAvatar = view.findViewById(R.id.imgAvatar)
         tvUsername = view.findViewById(R.id.tvUsername)
         btnEditProfile = view.findViewById(R.id.btnEditProfile)
-        btnFeedback = view.findViewById(R.id.btnFeedBack)
+        btnFeedBack = view.findViewById(R.id.btnFeedBack)
         btnProfileSetting = view.findViewById(R.id.btnProfileSetting)
 
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
 
         // Fetch and display the username from the database
         getCurrentUserDisplayNameFromDatabase()
-
 
         // Set the avatar image (you can customize this based on your requirements)
         imgAvatar.setImageResource(R.drawable.defaultavatar)
@@ -69,15 +62,15 @@ class UserPageFragment : Fragment() {
             startActivity(intent)
         }
 
-        btnFeedback.setOnClickListener {
-            startActivity(Intent(requireContext(), ActivityFeedback::class.java))
+        btnFeedBack.setOnClickListener {
+            startActivity(Intent(requireContext(), FeedbackActivity::class.java))
         }
 
         btnProfileSetting.setOnClickListener {
             startActivity(Intent(requireContext(), ActivitySetting::class.java))
         }
 
-
+        return view
     }
 
     private fun getCurrentUserDisplayNameFromDatabase() {
@@ -102,11 +95,10 @@ class UserPageFragment : Fragment() {
                 }
             }
 
-            userRef.addValueEventListener(valueEventListener)
+            userRef.addListenerForSingleValueEvent(valueEventListener)
 
         }
+
+
     }
-
-
-
 }

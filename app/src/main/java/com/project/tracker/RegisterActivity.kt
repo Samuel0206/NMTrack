@@ -71,7 +71,6 @@ class RegisterActivity : AppCompatActivity() {
                                 "email" to email,
                                 "phone" to phone,
                                 "password" to password,
-                                "avatarurl" to "",
                                 "goal" to 0
                             )
                             userRef.setValue(userData)

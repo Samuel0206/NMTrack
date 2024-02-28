@@ -3,25 +3,20 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.project.tracker"
     compileSdk = 34
-
     buildFeatures {
         viewBinding = true
     }
-
     defaultConfig {
         applicationId = "com.project.tracker"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -39,9 +34,7 @@ android {
         jvmTarget = "1.8"
     }
 }
-
 dependencies {
-
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
