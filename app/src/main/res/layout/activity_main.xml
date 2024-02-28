@@ -13,6 +13,18 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <ImageButton
+        android:id="@+id/btn_bill_input"
+        android:layout_marginBottom="-10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="4dp"
+        android:src="@drawable/add"
+        android:layout_gravity="center"
+        android:background="#DAD8D8"
+        android:scaleType="fitCenter"
+        android:contentDescription="Jump to bill input page."/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
