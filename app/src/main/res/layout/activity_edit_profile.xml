@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etUsername"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="160dp"
         android:onClick="confirmChanges"
         android:text="Submit"
-        app:layout_constraintEnd_toEndOf="@+id/etUsername"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/etUsername"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etPhone"
+        app:layout_constraintStart_toStartOf="@+id/etPhone"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
     <ImageView
         android:id="@+id/imgAvatar"
@@ -46,6 +46,28 @@
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
         tools:text="CurrentUsername" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/etUsername"
+        app:layout_constraintStart_toStartOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/etEmail"
+        app:layout_constraintStart_toStartOf="@+id/etEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

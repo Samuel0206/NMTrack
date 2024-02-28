@@ -4,14 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.project.tracker.databinding.ActivityEditProfileBinding
+
 
 class EditProfileActivity : AppCompatActivity() {
     private val view: ActivityEditProfileBinding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
@@ -20,7 +21,6 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
     private lateinit var storageReference: StorageReference
 
-    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +32,12 @@ class EditProfileActivity : AppCompatActivity() {
 
         // Set the current username
         val currentUsername = intent.getStringExtra("currentUsername")
-        view.etUsername.hint = currentUsername
+        val currentEmail = intent.getStringExtra("currentEmail")
+        val currentPhone = intent.getStringExtra("currentPhone")
 
-        // Handle avatar click to show options
-        view.imgAvatar.setOnClickListener {
-            showImageOptions()
-        }
+        view.etUsername.hint = currentUsername
+        view.etEmail.hint = currentEmail
+        view.etPhone.hint = currentPhone
 
         // Handle confirm button click
         view.btnSubmit.setOnClickListener {
@@ -45,83 +45,61 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun showImageOptions() {
-        val options = arrayOf("Choose from Gallery", "Take a Photo")
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-        builder.setTitle("Select Option")
-        builder.setItems(options) { _, which ->
-            when (which) {
-                0 -> chooseFromGallery()
-                1 -> takePhoto()
-            }
-        }
-        builder.show()
-    }
-
-    private fun chooseFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
-    }
-
-    private fun takePhoto() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA_REQUEST_CODE)
-    }
 
     private fun confirmChanges() {
-        val newUsername = view.etUsername.text.toString()
+        val newUsername = if (!view.etUsername.text.isNullOrBlank()) view.etUsername.text.toString() else view.etUsername.hint.toString()
+        val newEmail = if (!view.etEmail.text.isNullOrBlank()) view.etEmail.text.toString() else view.etEmail.hint.toString()
+        val newPhone = if (!view.etPhone.text.isNullOrBlank()) view.etPhone.text.toString() else view.etPhone.hint.toString()
 
-        updateUsernameInFirebase(newUsername)
+        updateUserInfoInFirebase(newUsername, newEmail, newPhone) {
+            // Set the result with the updated username
+            val resultIntent = Intent()
+            resultIntent.putExtra("updatedUsername", newUsername)
+            resultIntent.putExtra("updatedEmail", newEmail)
+            resultIntent.putExtra("updatedPhone", newPhone)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
+
 
     }
 
-
-    private fun updateUsernameInFirebase(newUsername: String) {
+    private fun updateUserInfoInFirebase(
+        newUsername: String,
+        newEmail: String,
+        newPhone: String,
+        onSuccess: () -> Unit
+    ) {
         val currentUser = auth.currentUser
         val userId = currentUser?.uid
 
         userId?.let {
             val userRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
-            userRef.child("username").setValue(newUsername)
-            // 完成后关闭页面
-            finish()
 
-        }
-    }
+            val updateData = mapOf(
+                "username" to newUsername,
+                "email" to newEmail,
+                "phone" to newPhone
+            )
 
-    private fun updateAvatarUrl(avatarUrl: String) {
-        val currentUser = auth.currentUser
-        val userId = currentUser?.uid
-
-        userId?.let {
-            val userRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
-            userRef.child("avatarUrl").setValue(avatarUrl)
-            // 完成后关闭页面
-            finish()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                GALLERY_REQUEST_CODE -> {
-                    data?.data?.let { uri ->
-                        imageUri = uri
-                        view.imgAvatar.setImageURI(uri)
+            userRef.updateChildren(updateData)
+                .addOnCompleteListener(this@EditProfileActivity) { task ->
+                    if (task.isSuccessful) {
+                        // Update successful
+                        Log.d("EditProfileActivity", "User info updated successfully")
+                        onSuccess.invoke() // Invoke the callback when the update is successful
+                    } else {
+                        // Handle error
+                        Log.e("EditProfileActivity", "Failed to update user info", task.exception)
+                        Toast.makeText(
+                            this@EditProfileActivity,
+                            "Failed to update user info",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-                CAMERA_REQUEST_CODE -> {
-                    imageUri?.let {
-                        view.imgAvatar.setImageURI(it)
-                    }
-                }
-            }
         }
     }
 
-    companion object {
-        private const val GALLERY_REQUEST_CODE = 100
-        private const val CAMERA_REQUEST_CODE = 101
-    }
+
 }

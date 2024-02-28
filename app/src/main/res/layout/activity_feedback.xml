@@ -45,4 +45,21 @@
         app:layout_constraintStart_toStartOf="@+id/etFeedback"
         app:layout_constraintTop_toBottomOf="@+id/etFeedback"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/multiLineTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ellipsize="end"
+        android:lines="4"
+        android:text="Contact Us：\nPhone Number: 098-456-7457 \nEmail：nmtrack@gmail.com \nInstagram: @NMTrack"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btnSubmitFB"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnSubmitFB"
+        app:layout_constraintTop_toBottomOf="@+id/btnSubmitFB" />
 </androidx.constraintlayout.widget.ConstraintLayout>

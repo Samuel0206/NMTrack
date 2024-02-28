@@ -38,7 +38,7 @@ class FeedbackActivity : AppCompatActivity() {
     private fun sendFeedbackToFirebase(feedback: String) {
         // Get current user information
         val currentUser = auth.currentUser
-        val userId = currentUser?.uid ?: "" 
+        val userId = currentUser?.uid ?: ""
         val email = currentUser?.email ?: ""
 
         // Create a reference to the "feedbacks" node in the database
