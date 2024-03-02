@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -32,7 +32,7 @@ class BillInputActivity : AppCompatActivity() {
     private lateinit var dateTextView: TextView
     private lateinit var calendar: Calendar
     private lateinit var datePickerDialog: DatePickerDialog
-    private lateinit var backToMain: ImageButton
+    private lateinit var backToMain: ImageView
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val database = FirebaseDatabase.getInstance().reference
 
@@ -60,7 +60,7 @@ class BillInputActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
 
-        backToMain.setOnClickListener{
+        backToMain.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 

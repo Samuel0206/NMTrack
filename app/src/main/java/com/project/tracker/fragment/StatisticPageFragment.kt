@@ -1,11 +1,13 @@
 package com.project.tracker.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -25,6 +27,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.project.tracker.R
+import com.project.tracker.YearlyReportActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -49,6 +52,11 @@ class StatisticPageFragment : Fragment() {
             val currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
             val spinner = view.findViewById<Spinner>(R.id.month_choose)
             spinner.setSelection(currentMonth - 1) // Adjust for 0-based index
+        }
+
+        val toYearlyButton = view.findViewById<Button>(R.id.to_yearly_report)
+        toYearlyButton.setOnClickListener{
+            startActivity(Intent(context, YearlyReportActivity::class.java))
         }
 
         return view

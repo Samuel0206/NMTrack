@@ -109,6 +109,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/yearly_back_to_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
