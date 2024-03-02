@@ -8,12 +8,37 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setting Page"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"
+        android:background="#8E6DFF"
+        android:text="Setting"
+        android:textAlignment="center"
         android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnEditPassword"
+        android:layout_width="280dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="120dp"
+        android:text="Modify Password"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="280dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="30dp"
+        android:text="Log Out"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnEditPassword"
+        app:layout_constraintStart_toStartOf="@+id/btnEditPassword"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
