@@ -36,8 +36,11 @@ class LoginActivity : AppCompatActivity() {
         toForgetPasswordButton = findViewById(R.id.login_to_forgetPassword_button)
 
         loginButton.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
+//            val email = emailEditText.text.toString()
+//            val password = passwordEditText.text.toString()
+
+            val email = "1@1.com"
+            val password = "123456"
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email or password cannot be empty. ", Toast.LENGTH_SHORT).show()

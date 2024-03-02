@@ -1,19 +1,79 @@
 package com.project.tracker.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.project.tracker.databinding.ActivityMainPageFragmentBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import com.project.tracker.R
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MainPageFragment : Fragment() {
-    private lateinit var view: ActivityMainPageFragmentBinding
+
+    private lateinit var tvTodayExpense: TextView
+    private lateinit var auth: FirebaseAuth
+    private lateinit var billRef: DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return view.root
+        val view = inflater.inflate(R.layout.activity_main_page_fragment, container, false)
+
+        tvTodayExpense = view.findViewById(R.id.tvTodayExpense)
+        billRef = FirebaseDatabase.getInstance().reference.child("bills")
+        auth = FirebaseAuth.getInstance()
+
+        getTodaysExpenses()
+        return view
+    }
+
+    private fun getTodaysExpenses() {
+        val todayDate = getCurrentDate()
+
+        billRef.orderByChild("date").equalTo(todayDate)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var totalExpense = 0.0
+                    val currentUserUid = auth.currentUser?.uid
+
+                    for (snapshot in dataSnapshot.children) {
+                        val amount = snapshot.child("amount").getValue(Double::class.java)
+                        val type = snapshot.child("type").getValue(String::class.java)
+                        val billUid = snapshot.child("userId").getValue(String::class.java)
+
+                        Log.d("testamount", amount.toString())
+                        Log.d("testtype", type.toString())
+                        Log.d("testbillUid", billUid.toString())
+
+                        if (type == "Expenses" && currentUserUid == billUid) {
+                            totalExpense += amount ?: 0.0
+                        }
+                    }
+
+                    // Update the corresponding TextView for expenses
+                    tvTodayExpense.text = "Today's Expenses: $totalExpense Baht"
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle the error
+                    Log.e("FirebaseError", "Database Error: ${databaseError.message}")
+                }
+            })
+    }
+
+
+    // Implement this function to get today's date in the format "yyyy-MM-dd"
+    private fun getCurrentDate(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val current = LocalDate.now().format(formatter)
+        return current
     }
 }

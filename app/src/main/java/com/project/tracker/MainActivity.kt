@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.tracker.fragment.ListPageFragment
+import com.project.tracker.fragment.MainPageFragment
 import com.project.tracker.fragment.UserPageFragment
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         buttonToBillInput = findViewById(R.id.btn_bill_input)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                //R.id.action_main_page -> {
-                //loadFragment(MainPageFragment())
-                //return@setOnNavigationItemSelectedListener true
-                //}
+                R.id.action_main_page -> {
+                loadFragment(MainPageFragment())
+                return@setOnNavigationItemSelectedListener true
+                }
                 R.id.action_list_page -> {
                     loadFragment(ListPageFragment())
                 return@setOnNavigationItemSelectedListener true
