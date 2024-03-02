@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity() {
                 //loadFragment(MainPageFragment())
                 //return@setOnNavigationItemSelectedListener true
                 //}
-                //R.id.action_list_page -> {
-                //loadFragment(ListPageFragment())
-                //return@setOnNavigationItemSelectedListener true
-                //}
+                R.id.action_list_page -> {
+                    loadFragment(ListPageFragment())
+                return@setOnNavigationItemSelectedListener true
+                }
                 R.id.action_user_page -> {
                     loadFragment(UserPageFragment())
                     return@setOnNavigationItemSelectedListener true

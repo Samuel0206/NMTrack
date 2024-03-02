@@ -76,10 +76,9 @@ class BillInputActivity : AppCompatActivity() {
     }
 
     private fun setupAutoCompleteTextView() {
-        val options = arrayOf("Food", "Shopping", "Entertainment")
+        val options = arrayOf("Food", "Shopping", "Entertainment", "Travel", "Bills", "Other")
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, options)
         amountUsage.setAdapter(adapter)
-
         amountUsage.isFocusable = false
         amountUsage.isFocusableInTouchMode = false
         amountUsage.isClickable = true
