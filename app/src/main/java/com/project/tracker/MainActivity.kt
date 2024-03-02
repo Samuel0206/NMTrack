@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.tracker.fragment.ListPageFragment
+import com.project.tracker.fragment.StatisticPageFragment
 import com.project.tracker.fragment.UserPageFragment
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.action_user_page -> {
                     loadFragment(UserPageFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.action_stat_page -> {
+                    loadFragment(StatisticPageFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> false

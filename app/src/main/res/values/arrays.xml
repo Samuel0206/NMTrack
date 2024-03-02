@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string-array name="filter_icons">
-    <item>@drawable/all</item>
-    <item>@drawable/expense</item>
-    <item>@drawable/income</item>
-</string-array>
+    <string-array name="filter_icons">
+        <item>@drawable/all</item>
+        <item>@drawable/expense</item>
+        <item>@drawable/income</item>
+    </string-array>
 
-<string-array name="filter_texts">
-    <item>All</item>
-    <item>Expenses</item>
-    <item>Income</item>
-</string-array>
+    <string-array name="filter_texts">
+        <item>All</item>
+        <item>Expenses</item>
+        <item>Income</item>
+    </string-array>
+
+    <string-array name="months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 </resources>
+
