@@ -7,11 +7,8 @@ import androidx.fragment.app.Fragment
 import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.tracker.fragment.ListPageFragment
-<<<<<<< HEAD
 import com.project.tracker.fragment.MainPageFragment
-=======
 import com.project.tracker.fragment.StatisticPageFragment
->>>>>>> 4ce91a712418c4d9364bc6bc9fa571385496dad6
 import com.project.tracker.fragment.UserPageFragment
 
 class MainActivity : AppCompatActivity() {
