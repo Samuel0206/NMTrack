@@ -44,6 +44,7 @@
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".BillInputActivity" />
+        <activity android:name=".YearlyReportActivity" />
     </application>
 
 </manifest>

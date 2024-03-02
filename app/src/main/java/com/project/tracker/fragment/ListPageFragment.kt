@@ -50,13 +50,9 @@ class ListPageFragment : Fragment() {
         filterSpinner = view.findViewById(R.id.list_filter)
         setupFilterSpinner()
 
-        // 获取当前用户的 ID
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-
-        // 获取实时数据库引用
         db = FirebaseDatabase.getInstance().reference.child("bills")
 
-        // 读取全部账单数据
         loadAllBills()
 
         return view

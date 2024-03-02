@@ -3,6 +3,8 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
 }
+
+
 android {
     namespace = "com.project.tracker"
     compileSdk = 34
@@ -44,6 +46,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.2")
     implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     implementation("com.google.firebase:firebase-firestore:24.10.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")

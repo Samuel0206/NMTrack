@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -31,6 +32,7 @@ class BillInputActivity : AppCompatActivity() {
     private lateinit var dateTextView: TextView
     private lateinit var calendar: Calendar
     private lateinit var datePickerDialog: DatePickerDialog
+    private lateinit var backToMain: ImageButton
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val database = FirebaseDatabase.getInstance().reference
 
@@ -45,6 +47,7 @@ class BillInputActivity : AppCompatActivity() {
         inputAmountConfirm = findViewById(R.id.input_amount_confirm)
         radioGroup = findViewById(R.id.input_amount_type)
         amountUsage = findViewById(R.id.amount_usage_select)
+        backToMain = findViewById(R.id.input_back_to_main)
         dateTextView = findViewById(R.id.date_text_view)
 
         setupAutoCompleteTextView()
@@ -57,10 +60,16 @@ class BillInputActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
 
+        backToMain.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
         inputAmountConfirm.setOnClickListener {
             saveBillToFirebase()
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
