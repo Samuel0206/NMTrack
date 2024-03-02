@@ -72,9 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
-            android:hint="Amount"
-            android:inputType="text"
-            android:text="Estimated Amount"/>
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnUpdateGoal"
