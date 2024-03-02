@@ -2,6 +2,7 @@ package com.project.tracker.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -115,6 +116,7 @@ class StatisticPageFragment : Fragment() {
                             val month = calendar.get(Calendar.MONTH) + 1 // Adding 1 because January is 0
 
                             if (month == selectedMonth) {
+
                                 totalDays++
                                 if (type == "Income") {
                                     totalIncome += amount
