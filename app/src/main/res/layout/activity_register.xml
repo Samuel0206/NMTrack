@@ -16,14 +16,15 @@
         android:layout_marginTop="100dp"
         android:text="Welcome!"
         android:gravity="center"
-        />
+        android:textColor="#3CB371"/>
 
     <EditText
         android:id="@+id/etFeedback"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="50dp"
-        android:background="#DAD8D8"
+        android:layout_marginHorizontal="40dp"
+        android:background="#DCDCDC"
         android:hint="Enter username"
         android:padding="10dp"
         android:textSize="20sp"
@@ -35,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"
+        android:layout_marginHorizontal="40dp"
+        android:background="#DCDCDC"
         android:hint="Enter email"
         android:padding="10dp"
         android:textSize="20sp"
@@ -47,7 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"
+        android:layout_marginHorizontal="40dp"
+        android:background="#DCDCDC"
         android:hint="Enter phone number"
         android:padding="10dp"
         android:textSize="20sp"
@@ -59,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"
+        android:layout_marginHorizontal="40dp"
+        android:background="#DCDCDC"
         android:hint="Enter password"
         android:inputType="textPassword"
         android:padding="10dp"
@@ -72,7 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"
+        android:layout_marginHorizontal="40dp"
+        android:background="#DCDCDC"
         android:hint="Enter password again"
         android:inputType="textPassword"
         android:padding="10dp"
@@ -85,10 +90,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="#3CB371"
         android:text="Register"
         android:textSize="20sp"
-        app:cornerRadius="10dp"
-        />
+        app:cornerRadius="10dp" />
 
     <TextView
         android:id="@+id/register_to_login_button"
@@ -98,7 +104,7 @@
         android:text="Login here"
         android:textSize="16sp"
         android:gravity="center"
-        android:textColor="#3A5FCD"
+        android:textColor="#006400"
         />
 
 </LinearLayout>

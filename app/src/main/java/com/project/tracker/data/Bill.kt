@@ -5,5 +5,6 @@ data class Bill(
     val amount: Double = 0.0,
     val date: String = "",
     val type: String = "",
-    val usage: String = ""
+    val usage: String = "",
+    val userId: String = ""
 )
