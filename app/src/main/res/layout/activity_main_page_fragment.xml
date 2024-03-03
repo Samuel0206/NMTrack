@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".fragment.MainPageFragment">
+    tools:context=".fragment.MainPageFragment"
+    android:background="#3CB371"> <!-- Set the background color to white -->
 
     <LinearLayout
         android:id="@+id/top_info_layout"
@@ -20,20 +22,23 @@
             android:id="@+id/tvTodayExpense"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:text=""
-            android:textSize="26sp" />
-
+            android:textSize="26sp" /> <!-- Set the background color to green -->
 
 
         <TextView
             android:id="@+id/tvBalance"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:gravity="center"
-            android:textSize="22sp" />
+            android:textSize="22sp" /> <!-- Set the background color to green -->
 
 
         <TextView
@@ -42,11 +47,20 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="123"
-            android:textSize="25sp" />
+            android:text="Welcome to NMTrack!"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:background="#FFFFFF" />
 
     </LinearLayout>
 
+    <!-- Add green-colored view as a separator -->
+    <View
+        android:id="@+id/greenSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#3CB371"
+        app:layout_constraintTop_toBottomOf="@id/top_info_layout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDayBill"
@@ -54,10 +68,10 @@
         android:layout_height="400dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_info_layout"
+        app:layout_constraintTop_toBottomOf="@id/greenSeparator"
         app:layout_constraintVertical_bias="0.34"
         tools:layout_editor_absoluteX="16dp"
-        tools:listitem="@layout/item_bill" />
-
+        tools:listitem="@layout/item_bill"
+        android:background="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

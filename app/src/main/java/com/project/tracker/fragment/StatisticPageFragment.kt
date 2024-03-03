@@ -137,6 +137,20 @@ class StatisticPageFragment : Fragment() {
                         }
                     }
 
+                    val ref = database.child("users").child(userId)
+                    ref.addListenerForSingleValueEvent(
+                        object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val userGoal = snapshot.child("goal").getValue(Int::class.java)
+                                balanceTextView?.text = "Balance/Month: $totalExpense / $userGoal"
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                // handle errors
+                            }
+                        },
+                    )
+
                     totalIncomeTextView?.text = "Total Income: $totalIncome"
                     totalExpenseTextView?.text = "Total Expense: $totalExpense"
 
