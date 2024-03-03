@@ -79,7 +79,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:background="#DCDCDC"
-                android:hint="Enter Estimated Amount"
+                android:hint="Enter Estimated ..."
                 android:inputType="text"
                 android:padding="8dp" />
 
@@ -92,7 +92,7 @@
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#3CB371"
                 android:text="Update"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:cornerRadius="10dp" />
 
         </LinearLayout>
