@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,10 +16,10 @@ import com.google.firebase.database.*
 import com.project.tracker.BillInputActivity
 import com.project.tracker.R
 import com.project.tracker.adapter.BillAdapter
-import com.project.tracker.data.Bill
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Date
-import java.util.Locale
 
 class MainPageFragment : Fragment() {
     private lateinit var tvTodayExpense: TextView
@@ -57,42 +56,47 @@ class MainPageFragment : Fragment() {
             startActivity(Intent(requireContext(), BillInputActivity::class.java))
         }
 
-        loadTodayBills()
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadTodayBills()
+        getTodaysExpenses()
         getMonthExpense()
     }
 
-    private fun loadTodayBills() {
-        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+    private fun getTodaysExpenses() {
+        val todayDate = getCurrentDate()
 
-        if (userId != null) {
-            val databaseQuery = database.orderByChild("userId").equalTo(userId)
-            databaseQuery.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val bills = mutableListOf<Bill>()
-                    for (billSnapshot in snapshot.children) {
-                        val bill = billSnapshot.getValue(Bill::class.java)
-                        bill?.let {
-                            if (it.date == today) {
-                                bills.add(it)
-                                Log.d("Bills", bills.toString())
-                            }
+        billRef.orderByChild("date").equalTo(todayDate)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var totalExpense = 0.0
+                    val currentUserUid = auth.currentUser?.uid
+
+                    for (snapshot in dataSnapshot.children) {
+                        val amount = snapshot.child("amount").getValue(Double::class.java)
+                        val type = snapshot.child("type").getValue(String::class.java)
+                        val billUid = snapshot.child("userId").getValue(String::class.java)
+
+                        Log.d("testamount", amount.toString())
+                        Log.d("testtype", type.toString())
+                        Log.d("testbillUid", billUid.toString())
+
+                        if (type == "Expenses" && currentUserUid == billUid) {
+                            totalExpense += amount ?: 0.0
                         }
                     }
-                    adapter.updateData(bills)
+
+                    // Update the corresponding TextView for expenses
+                    tvTodayExpense.text = "Today's Expenses: $totalExpense Baht"
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainPageFragment", "Failed to read value.", error.toException())
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle the error
+                    Log.e("FirebaseError", "Database Error: ${databaseError.message}")
                 }
             })
-        }
     }
 
     private fun getMonthExpense() {
@@ -147,5 +151,11 @@ class MainPageFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun getCurrentDate(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val current = LocalDate.now().format(formatter)
+        return current
     }
 }
