@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package com.project.tracker
 
 import android.content.Intent
@@ -187,7 +186,7 @@ class YearlyReportActivity : AppCompatActivity() {
         }
     }
 }
-=======
+
 //package com.project.tracker
 //
 //import androidx.fragment.app.Fragment
@@ -324,4 +323,3 @@ class YearlyReportActivity : AppCompatActivity() {
 //        barChart.invalidate()
 //    }
 //}
->>>>>>> Stashed changes
