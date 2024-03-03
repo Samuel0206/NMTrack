@@ -1,6 +1,7 @@
 package com.project.tracker.fragment
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class StatisticPageFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var loadingView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,10 @@ class StatisticPageFragment : Fragment() {
 
         auth = Firebase.auth
         database = FirebaseDatabase.getInstance().reference
+
+        loadingView = inflater.inflate(R.layout.loading_view, container, false)
+        container?.addView(loadingView)
+
 
         val userId = auth.currentUser?.uid
         if (userId != null) {
@@ -95,11 +101,12 @@ class StatisticPageFragment : Fragment() {
             val averageDailyExpenseTextView = view?.findViewById<TextView>(R.id.average_daily_expense)
             val balanceTextView = view?.findViewById<TextView>(R.id.balance_this_month)
 
-
             val databaseQuery = database.child("bills").orderByChild("userId").equalTo(userId)
 
             databaseQuery.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    loadingView.visibility = View.VISIBLE
+
                     var totalIncome = 0
                     var totalExpense = 0
                     var totalDays = 0
@@ -146,7 +153,6 @@ class StatisticPageFragment : Fragment() {
                     val barData = BarData(dataSet)
                     barChart?.data = barData
 
-                    // Customize BarChart
                     val xAxis = barChart?.xAxis
                     xAxis?.valueFormatter = DayRangeXAxisValueFormatter()
                     xAxis?.position = XAxis.XAxisPosition.BOTTOM
@@ -167,16 +173,20 @@ class StatisticPageFragment : Fragment() {
                             } else {
                                 balanceTextView?.visibility = View.GONE
                             }
+
+                            loadingView.visibility = View.GONE
                         }
 
                         override fun onCancelled(error: DatabaseError) {
                             // Handle error
+                            loadingView.visibility = View.GONE
                         }
                     })
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     // Handle error
+                    loadingView.visibility = View.GONE
                 }
             })
         }
@@ -190,3 +200,4 @@ class StatisticPageFragment : Fragment() {
         }
     }
 }
+

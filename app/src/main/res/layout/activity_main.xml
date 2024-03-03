@@ -15,15 +15,16 @@
 
     <ImageButton
         android:id="@+id/btn_bill_input"
-        android:layout_marginBottom="-10dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_marginBottom="-16dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:padding="10dp"
         android:elevation="4dp"
         android:src="@drawable/add"
         android:layout_gravity="center"
-        android:background="#DAD8D8"
+        android:background="@drawable/round_button"
         android:scaleType="fitCenter"
-        android:contentDescription="Jump to bill input page."/>
+        android:contentDescription="Jump to bill input page." />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
+        android:background="#3CB371"
         app:menu="@menu/bottom_navi" />
 
 </LinearLayout>

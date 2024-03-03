@@ -2,8 +2,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginTop="10dp"
-    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginHorizontal="5dp"
+    android:background="@drawable/frame_layout"
     android:padding="10dp">
 
     <LinearLayout
@@ -17,15 +18,15 @@
             android:id="@+id/amount_list"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#006400"
             android:text="1000000"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/usage_list"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#006400"
             android:text="Usage"
             android:textSize="16sp"/>
 
@@ -41,7 +42,7 @@
             android:id="@+id/type_list"
             android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#006400"
             android:text="Expense"
             android:textSize="16sp"/>
 
@@ -49,7 +50,7 @@
             android:id="@+id/date_list"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#006400"
             android:text="Date"
             android:textSize="16sp"/>
 

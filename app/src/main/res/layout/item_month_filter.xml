@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="January"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#006400"/>
 
 </LinearLayout>

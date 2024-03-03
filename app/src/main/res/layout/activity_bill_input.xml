@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#DAD8D8"
         android:padding="10dp">
 
         <ImageView
@@ -29,6 +28,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#DCDCDC"
         android:textSize="28dp"
         android:hint="Enter amount"
         android:maxLines="1"/>
@@ -39,6 +39,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#DCDCDC"
         android:completionThreshold="1"
         android:textSize="28sp"
         android:hint="Select an usage"
@@ -98,7 +99,9 @@
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#3CB371"
         android:textSize="32dp"
-        android:text="Confirm"/>
+        android:text="Confirm"
+        app:cornerRadius="10dp"/>
 
 </LinearLayout>

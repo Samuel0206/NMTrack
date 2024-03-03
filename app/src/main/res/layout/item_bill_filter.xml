@@ -31,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:text="Expenses"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            />
 
     </LinearLayout>
 

@@ -34,6 +34,7 @@ class ListPageFragment : Fragment() {
     private lateinit var userId: String
     private lateinit var filterSpinner: Spinner
     private lateinit var filterAdapter: FilterAdapter
+    private lateinit var loadingView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +53,9 @@ class ListPageFragment : Fragment() {
 
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         db = FirebaseDatabase.getInstance().reference.child("bills")
+
+        loadingView = inflater.inflate(R.layout.loading_view, container, false)
+        container?.addView(loadingView)
 
         loadAllBills()
 
@@ -86,6 +90,8 @@ class ListPageFragment : Fragment() {
     }
 
     private fun loadAllBills() {
+        loadingView.visibility = View.VISIBLE
+
         db.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val bills = mutableListOf<Bill>()
@@ -93,11 +99,16 @@ class ListPageFragment : Fragment() {
                     val bill = billSnapshot.getValue(Bill::class.java)
                     bill?.let { bills.add(it) }
                 }
+
+                bills.sortByDescending { it.date }
+
                 adapter.updateData(bills)
+                loadingView.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ListPageFragment", "Failed to read value.", error.toException())
+                loadingView.visibility = View.GONE
             }
         })
     }

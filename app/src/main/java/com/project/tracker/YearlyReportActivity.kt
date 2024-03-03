@@ -147,11 +147,15 @@ class YearlyReportActivity : AppCompatActivity() {
                     val barEntries = ArrayList<BarEntry>()
                     for (i in monthlyData.indices) {
                         val monthData = monthlyData[i]
-                        barEntries.add(BarEntry(i.toFloat(), floatArrayOf(monthData.first.toFloat(), monthData.second.toFloat())))
+                        // 添加支出数据
+                        barEntries.add(BarEntry(i.toFloat(), monthData.first.toFloat()))
+                        // 添加收入数据
+                        barEntries.add(BarEntry(i.toFloat(), monthData.second.toFloat()))
                     }
 
                     val barDataSet = BarDataSet(barEntries, "Monthly Data")
-                    barDataSet.colors = listOf(Color.BLUE, Color.GREEN)
+                    barDataSet.colors = listOf(Color.parseColor("#FF6347"), Color.parseColor("#3CB371"))
+                    barDataSet.stackLabels = arrayOf("Expense", "Income")
                     barDataSet.valueTextColor = Color.BLACK
 
                     val barData = BarData(barDataSet)

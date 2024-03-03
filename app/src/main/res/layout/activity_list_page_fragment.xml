@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#3CB371"
         android:padding="10dp">
 
         <Spinner
             android:id="@+id/list_filter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_bill_filter"
             >
@@ -27,6 +28,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         tools:listitem="@layout/item_bill"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 

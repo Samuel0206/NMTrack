@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FeedbackActivity"
+    android:orientation="vertical"
     tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Feedback:"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="Feedback"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="#006400"/>
 
     <EditText
         android:id="@+id/etFeedback"
         android:layout_width="299dp"
         android:layout_height="350dp"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="#DAD8D8"
-        android:hint="Write Your Feedback..."
         android:gravity="left|top"
+        android:hint="Write Your Feedback..."
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:textColorHint="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv1"
-        app:layout_constraintStart_toStartOf="@+id/tv1"
-        app:layout_constraintTop_toBottomOf="@+id/tv1"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -40,26 +37,22 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#3CB371"
         android:text="Submit"
-        app:layout_constraintEnd_toEndOf="@+id/etFeedback"
-        app:layout_constraintStart_toStartOf="@+id/etFeedback"
-        app:layout_constraintTop_toBottomOf="@+id/etFeedback"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        app:cornerRadius="10dp" />
 
     <TextView
         android:id="@+id/multiLineTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:ellipsize="end"
         android:lines="4"
         android:text="Contact Us：\nPhone Number: 098-456-7457 \nEmail：nmtrack@gmail.com \nInstagram: @NMTrack"
-        android:textAlignment="viewStart"
-        android:textColor="#000000"
+        android:textColor="#006400"
         android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btnSubmitFB"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btnSubmitFB"
-        app:layout_constraintTop_toBottomOf="@+id/btnSubmitFB" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textStyle="bold" />
+</LinearLayout>
