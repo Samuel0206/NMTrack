@@ -5,13 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.GridLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.project.tracker.R
+import com.project.tracker.adapter.BillAdapter
+import com.project.tracker.adapter.DailyBillAdapter
+import com.project.tracker.data.DailyBill
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -22,23 +29,34 @@ class MainPageFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var billRef: DatabaseReference
     private lateinit var database: DatabaseReference
+    private lateinit var tvBalance: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.activity_main_page_fragment, container, false)
 
+        tvBalance = view.findViewById(R.id.tvBalance)
         tvTodayExpense = view.findViewById(R.id.tvTodayExpense)
         billRef = FirebaseDatabase.getInstance().reference.child("bills")
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
 
+
+
+        return view.rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         getTodaysExpenses()
         getMonthExpense()
-        return view
     }
+
+
 
     private fun getTodaysExpenses() {
         val todayDate = getCurrentDate()
@@ -64,7 +82,12 @@ class MainPageFragment : Fragment() {
                     }
 
                     // Update the corresponding TextView for expenses
-                    tvTodayExpense.text = "Today's Expenses: $totalExpense Baht"
+                    if (totalExpense == 0.0) {
+                        tvTodayExpense.text = "No Expense Today!"
+                    } else {
+                        tvTodayExpense.text = "Today's Expenses: $totalExpense Baht"
+                    }
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -77,7 +100,7 @@ class MainPageFragment : Fragment() {
     private fun getMonthExpense() {
         val userId = auth.currentUser?.uid
         if (userId != null) {
-            val tvExpense_Goal = view?.findViewById<TextView>(R.id.tvExpense_Goal)
+            val tvBalance = view?.findViewById<TextView>(R.id.tvBalance)
 
             val databaseQuery = billRef.orderByChild("userId").equalTo(userId)
 
@@ -100,20 +123,21 @@ class MainPageFragment : Fragment() {
                         }
                     }
                     val userRef = database.child("users").child(userId)
-                    userRef.addListenerForSingleValueEvent(object: ValueEventListener {
+                    userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(userSnapshot: DataSnapshot) {
                             val userGoal = userSnapshot.child("goal").getValue(Int::class.java)
                             if (userGoal != null && userGoal > 0) {
-                                tvExpense_Goal?.text = "Balance: $totalExpense/$userGoal"
-                                tvExpense_Goal?.visibility = View.VISIBLE
-                            } else {
-                                tvExpense_Goal?.visibility = View.GONE
+                                if (totalExpense <= userGoal) {
+                                    tvBalance?.text = "Monthly Use: $totalExpense / $userGoal Baht \n You have ${userGoal - totalExpense} baht balance"
+                                }  else {
+                                    tvBalance?.text = "Monthly Use: $totalExpense / $userGoal Baht \n Expenditure has exceeded ${totalExpense - userGoal} baht!"
+                                }
+
                             }
                         }
 
-
                         override fun onCancelled(error: DatabaseError) {
-                            Log.e("GetGoal", "Failed to Get Goal")
+                            // Handle error
                         }
                     })
                 }

@@ -13,42 +13,49 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- 今日支出 -->
         <TextView
             android:id="@+id/tvTodayExpense"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="28sp" />
+            android:text=""
+            android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/tvExpense_Goal"
+            android:id="@+id/tvBalance"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18dp" />
+            android:textSize="22sp" />
+
 
         <TextView
             android:id="@+id/tvWeekly"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
-            android:text="Weekly Expenses: 5200 \n Weekly Income: 220"
             android:gravity="center"
+            android:text="123"
             android:textSize="25sp" />
 
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rvDayBill"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="400dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_info_layout"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintVertical_bias="0.34"
+        tools:layout_editor_absoluteX="16dp"
+        tools:listitem="@layout/item_bill" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

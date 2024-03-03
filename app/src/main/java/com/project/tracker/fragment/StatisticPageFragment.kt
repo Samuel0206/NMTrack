@@ -162,7 +162,7 @@ class StatisticPageFragment : Fragment() {
                         override fun onDataChange(userSnapshot: DataSnapshot) {
                             val userGoal = userSnapshot.child("goal").getValue(Int::class.java)
                             if (userGoal != null && userGoal > 0) {
-                                balanceTextView?.text = "Balance: $totalExpense/$userGoal"
+                                balanceTextView?.text
                                 balanceTextView?.visibility = View.VISIBLE
                             } else {
                                 balanceTextView?.visibility = View.GONE
