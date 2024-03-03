@@ -34,6 +34,8 @@
             android:textColor="#006800"/>
 
         <!-- 今日支出 -->
+
+
         <TextView
             android:id="@+id/tvTodayExpense"
             android:layout_width="match_parent"
@@ -42,9 +44,8 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:text=""
-            android:textSize="26sp"
-            android:textColor="#006800"/>
-
+            android:textColor="#006800"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvBalance"
@@ -54,7 +55,7 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:textColor="#006800"
-            android:textSize="26sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
