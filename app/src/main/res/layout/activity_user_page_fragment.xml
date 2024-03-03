@@ -79,10 +79,10 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:padding="8dp"
-                android:hint="Amount"
+                android:hint="Enter Estimated Amount"
                 android:background="#DCDCDC"
                 android:inputType="text"
-                android:text="Estimated Amount"/>
+                />
 
             <Button
                 android:id="@+id/btnUpdateGoal"

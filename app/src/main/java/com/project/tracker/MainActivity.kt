@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        loadFragment(MainPageFragment())
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         buttonToBillInput = findViewById(R.id.btn_bill_input)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 默认加载第一个 Fragment
-        //loadFragment(MainPageFragment())
+
     //}
 
     //private fun loadFragment(fragment: Fragment) {

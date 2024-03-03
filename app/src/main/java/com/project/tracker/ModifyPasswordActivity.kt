@@ -24,25 +24,56 @@ class ModifyPasswordActivity : AppCompatActivity() {
         binding = ActivityModifyPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val passwordEditText = findViewById<EditText>(R.id.etOldPassword)
-        val toggleButton = findViewById<ToggleButton>(R.id.tbOldPassword)
+        val passwordEditText1 = findViewById<EditText>(R.id.etOldPassword)
+        val toggleButton1 = findViewById<ToggleButton>(R.id.tbOldPassword)
+        val passwordEditText2 = findViewById<EditText>(R.id.etNewPassword)
+        val toggleButton2 = findViewById<ToggleButton>(R.id.tbNewPassword)
+        val passwordEditText3 = findViewById<EditText>(R.id.etConfirmNewPassword)
+        val toggleButton3 = findViewById<ToggleButton>(R.id.tbConfirmNewPassword)
 
 
 // 设置初始的输入类型为密码
-        passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        passwordEditText1.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        passwordEditText2.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        passwordEditText3.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
 // 监听ToggleButton的状态改变
-        toggleButton.setOnCheckedChangeListener { _, isChecked ->
+        toggleButton1.setOnCheckedChangeListener { _, isChecked ->
             // 根据ToggleButton的状态切换密码输入框的可见性
-            passwordEditText.inputType = if (isChecked) {
+            passwordEditText1.inputType = if (isChecked) {
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
 
             // 将光标移动到文本末尾
-            passwordEditText.setSelection(passwordEditText.text.length)
+            passwordEditText1.setSelection(passwordEditText1.text.length)
         }
+
+        toggleButton2.setOnCheckedChangeListener { _, isChecked ->
+            // 根据ToggleButton的状态切换密码输入框的可见性
+            passwordEditText2.inputType = if (isChecked) {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+
+            // 将光标移动到文本末尾
+            passwordEditText2.setSelection(passwordEditText2.text.length)
+        }
+
+        toggleButton3.setOnCheckedChangeListener { _, isChecked ->
+            // 根据ToggleButton的状态切换密码输入框的可见性
+            passwordEditText3.inputType = if (isChecked) {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+
+            // 将光标移动到文本末尾
+            passwordEditText3.setSelection(passwordEditText3.text.length)
+        }
+
 
         binding.btnUpdatePassword.setOnClickListener {
             val users = FirebaseAuth.getInstance().currentUser
@@ -69,6 +100,9 @@ class ModifyPasswordActivity : AppCompatActivity() {
                                             "Password Update Successfully",
                                             Toast.LENGTH_SHORT
                                         ).show()
+                                        // update to firebase
+                                        databaseReference.child(uid).child("password").setValue(newPassword)
+
                                         // Reauthenticate after updating the password
                                         val credential = EmailAuthProvider.getCredential(currentEmail, newPassword)
                                         users.reauthenticate(credential)
