@@ -22,8 +22,12 @@
             android:layout_height="100dp"
             android:layout_weight="1"
             android:gravity="center"
+<<<<<<< Updated upstream
             android:text=""
             android:textSize="26sp" />
+=======
+            android:textSize="22sp" />
+>>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/tvBalance"
