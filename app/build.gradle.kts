@@ -6,6 +6,14 @@ plugins {
 
 
 android {
+    signingConfigs {
+        create("release") {
+            storeFile = file("D:\\key\\key.keystore")
+            storePassword = "020206"
+            keyAlias = "huaming"
+            keyPassword = "020206"
+        }
+    }
     namespace = "com.project.tracker"
     compileSdk = 34
     buildFeatures {
@@ -18,6 +26,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("release")
     }
     buildTypes {
         release {
@@ -26,6 +35,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
